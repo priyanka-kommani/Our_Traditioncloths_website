@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback</title>
+    <link rel="stylesheet" href="style1.css">
+    <script src="https://kit.fontawesome.com/6553795082.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+
+
+
+<!--------Feedback-->
+<div id="contacts">
+    <div class="container">
+        <div class="column">
+            <div class="contact-top">
+                <h1 class="sub-title">Feed back for the products</h1>
+                <p>Your feedback is most important to our growth please help us by giving your valuble feedback on our products!!</p>
+
+                
+                    
+                    
+                    
+                </div>
+                
+            </div>
+            <div class="contact-bottom">
+                <form name="submit-to-google-sheet">
+                    <input type="text" name="Name" placeholder="your Name" required>
+                    <input type="email" name="Email"placeholder="Your Email" required>
+                    <textarea name="Message" rows="6"placeholder="Your Message"></textarea>
+                    <button type="submit" class="btn btn2">Submit</button>
+                </form>
+                <span id="msg"></span>
+            </div>
+        </div>
+    </div>
+    <div class="copyright"></div>
+</div>
+<script>
+    var tablinks=document.getElementsByClassName("tab-links");
+    var tabcontents=document.getElementsByClassName("tab-contents");
+    function opentab(tabname){
+        for(tablink of tablinks){
+            tablink.classList.remove("active-link");
+        }
+        for(tabcontent of tabcontents){
+            tabcontent.classList.remove("active-tab");
+        }
+        event.currentTarget.classList.add("active-link");
+        document.getElementById(tabname).classList.add("active-tab");
+    }
+
+</script>
+<script>
+var sidemenu=document.getElementById("sidemenu");
+function openmenu(){
+    sidemenu.style.right="0";
+}
+function closemenu(){
+    sidemenu.style.right="-200px";
+}
+</script>
+
+<script>
+  const scriptURL = "https://script.google.com/macros/s/AKfycbxudsj44CE4u2j8QlAA36xdsaXlC2707RSZ5TMD48x3fEs82XBdGsaVa4YUTReX7I-QNA/exec"
+  const form = document.forms['submit-to-google-sheet']
+  const msg=document.getElementById("msg")
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => {
+        msg.innerHTML="Feedback submited successfully Thank you for your Feedback!!"
+        setTimeout(function(){
+            msg.innerHTML=""
+        },1000)
+        form.reset()
+      })
+      .catch(error => console.error('Error!', error.message))
+  })
+</script>
+
+</body>
+
+</html>
